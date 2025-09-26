@@ -1,0 +1,28 @@
+---
+const { title = 'Arkaneia', description = 'Digital Marketing That Works Like Magic' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<link rel="icon" href="/favicon.svg" />
+<title>{title}</title>
+<link rel="preload" as="image" href="/hero-poster.jpg" />
+<link rel="stylesheet" href="/src/styles/globals.css" />
+</head>
+<body class="bg-bg min-h-screen text-white">
+<slot />
+<!-- GSAP for reveals -->
+<script type="module">
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+const els = document.querySelectorAll('[data-reveal]');
+els.forEach((el,i)=>{
+gsap.from(el,{opacity:0,y:20,duration:.7,delay: i*0.06, scrollTrigger:{trigger:el,start:'top 85%'}})
+});
+</script>
+</body>
+</html>

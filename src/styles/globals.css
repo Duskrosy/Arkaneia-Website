@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+--bg:#0A0A0A; /* canvas */
+--glass-tint: 122,0,255; /* purple */
+--glass-border: 178,102,255; /* lilac */
+--glass-glow: 255,0,127; /* magenta */
+}
+
+
+html,body{height:100%;background:var(--bg);color:#fff}
+*{box-sizing:border-box}
+
+
+/* Glass elevation tokens */
+.glass-g1{background: rgba(var(--glass-tint),0.16);backdrop-filter: blur(18px);-webkit-backdrop-filter: blur(18px);
+border:1px solid rgba(var(--glass-border),.35);box-shadow: var(--shadow-glass)}
+.glass-g2{background: rgba(var(--glass-tint),0.22);backdrop-filter: blur(24px);-webkit-backdrop-filter: blur(24px);
+border:1px solid rgba(var(--glass-border),.45);box-shadow: var(--shadow-glass)}
+.glass-g3{background: rgba(var(--glass-tint),0.26);backdrop-filter: blur(30px);-webkit-backdrop-filter: blur(30px);
+border:1px solid rgba(var(--glass-border),.55);box-shadow: 0 16px 40px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3)}
+.glass-g4{background: rgba(var(--glass-tint),0.28);backdrop-filter: blur(36px);-webkit-backdrop-filter: blur(36px);
+border:1px solid rgba(255,255,255,.06);box-shadow: 0 20px 46px rgba(0,0,0,.55)}
+.glass-g5{background: rgba(var(--glass-tint),0.30);backdrop-filter: blur(36px);-webkit-backdrop-filter: blur(36px);
+border:1px solid rgba(var(--glass-border),.6);box-shadow: 0 24px 60px rgba(0,0,0,.6)}
+
+
+:root{--shadow-glass:0 8px 20px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.25)}
+
+
+/* Rings & focus */
+.focus-ring:focus{outline:2px solid #00D4FF;outline-offset:2px}
+
+
+/* Utility pills */
+.pill{border-radius:9999px}
+.rim{box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), inset 0 0 24px rgba(var(--glass-glow),.12)}
+
+
+/* Shimmer on hover */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;inset:-1px;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.12) 50%,transparent 100%);
+transform:translateX(-120%);}
+.shimmer:hover::after{transition:transform 1.2s ease;transform:translateX(120%)}
+
+
+/* Noise overlay (optional) */
+.noise::before{content:'';position:absolute;inset:0;background:url('/noise.png');opacity:.025;pointer-events:none}

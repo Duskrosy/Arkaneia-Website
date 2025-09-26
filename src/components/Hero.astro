@@ -1,0 +1,29 @@
+<section class="relative h-[100svh] flex items-center justify-center overflow-hidden">
+<video class="absolute inset-0 w-full h-full object-cover opacity-80" src="/video/hero.mp4" poster="/hero-poster.jpg" autoplay muted loop playsinline></video>
+<canvas id="particles" class="absolute inset-0"></canvas>
+<div class="relative z-10 glass-g2 rim noise p-8 md:p-10 rounded-2xl text-center max-w-2xl" data-reveal>
+<h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Digital Marketing That Works Like Magic</h1>
+<p class="mt-4 text-graylite">Arkaneia helps SMEs & Corporates grow with Digital Marketing, SaaS, and Events.</p>
+<div class="mt-8">
+<a href="/contact" class="glass-g5 pill rim shimmer px-7 py-3 inline-block font-semibold">✨ Hire Us</a>
+</div>
+</div>
+</section>
+<script type="module">
+// lightweight particles (kept simple for perf)
+const c = document.getElementById('particles');
+const ctx = c.getContext('2d');
+const DPR = Math.max(1, window.devicePixelRatio || 1);
+function size(){ c.width = innerWidth*DPR; c.height = innerHeight*DPR; }
+size(); addEventListener('resize', size);
+const P = Array.from({length: 36},()=>({ x:Math.random()*c.width, y:Math.random()*c.height, vx:(Math.random()-.5)*.2*DPR, vy:(Math.random()-.5)*.2*DPR, r: (Math.random()*1.5+0.5)*DPR }));
+function tick(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.globalCompositeOperation = 'lighter';
+P.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>c.width) p.vx*=-1; if(p.y<0||p.y>c.height) p.vy*=-1;
+const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*6);
+g.addColorStop(0,'rgba(122,0,255,.35)'); g.addColorStop(1,'rgba(122,0,255,0)');
+ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*6,0,Math.PI*2); ctx.fill();
+}); requestAnimationFrame(tick);
+} tick();
+</script>

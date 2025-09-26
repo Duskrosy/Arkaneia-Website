@@ -1,0 +1,19 @@
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all">
+<a href="/" class="font-semibold">ARKANEIA</a>
+<div class="hidden md:flex gap-6">
+<a href="/services" class="hover:text-purple">Services</a>
+<a href="/portfolio" class="hover:text-purple">Portfolio</a>
+<a href="/about" class="hover:text-purple">About</a>
+<a href="/contact" class="hover:text-purple">Contact</a>
+</div>
+</nav>
+<script>
+// turns glass after scroll
+const nav = document.currentScript.previousElementSibling;
+const onScroll = () => {
+if (window.scrollY > 20) nav.classList.add('glass-g3','rim','noise');
+else nav.classList.remove('glass-g3','rim','noise');
+};
+addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+</script>
